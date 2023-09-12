@@ -32,13 +32,13 @@ try:
         minutes INT,
         name VARCHAR(255) COLLATE utf8mb4_unicode_ci,
         contributor_id INT,
-        submitted_date DATE, 
-        tags VARCHAR(255) COLLATE utf8mb4_unicode_ci,
-        nutrition VARCHAR(255) COLLATE utf8mb4_unicode_ci,
+        submitted_date DATETIME, 
+        tags TEXT,
+        nutrition TEXT,
         n_steps INT, 
-        steps VARCHAR(255) COLLATE utf8mb4_unicode_ci,
-        description VARCHAR(255) COLLATE utf8mb4_unicode_ci,
-        ingredients VARCHAR(255) COLLATE utf8mb4_unicode_ci,
+        steps TEXT,
+        description TEXT,
+        ingredients TEXT,
         n_ingredients INT
     );
     """, 
@@ -47,9 +47,9 @@ try:
         interaction_id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT,
         recipe_id INT,
-        date DATE, 
+        date DATETIME, 
         rating INT, 
-        review VARCHAR(255) COLLATE utf8mb4_unicode_ci,
+        review TEXT,
         FOREIGN KEY (user_id) REFERENCES users (user_id),
         FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id)
     );
