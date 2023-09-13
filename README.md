@@ -25,7 +25,10 @@ Welcome to the Data Engineering ETL Test Project! This project provides a soluti
 │   ├── database_connector.py   # Created the connection with the database.
 │   ├── extract_data.py         # DataExtraction class for data validation and extraction from the CSV data.
 │   ├── load_data_into_db.py    # Data loading for a given table name.
-├── data/                       # The data directory. It contains all the data files in .csv.
+├── data/                       # The data directory. It contains all the data files in CSV.
+├── tests/                      # Directory that contains the tests
+│    ├── __init__.py            # Empty file to treat 'tests' directory as a package.
+│    ├── tests.py               # Tests for the main processes of the DB creation and ETL.
 ├── README.md                   # This file.
 └── main.py                     # Entry point of.
 ```

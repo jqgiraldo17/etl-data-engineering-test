@@ -3,7 +3,7 @@ import mysql.connector
 
 def get_db_connection(host_b, userd_db, password_db, db_name):
     """
-    Create and return a MySQL database connection.
+    Create a MySQL database connection.
 
      Args:
         host_db (str): host name of the MySQL database server.

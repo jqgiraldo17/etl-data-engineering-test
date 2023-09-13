@@ -2,7 +2,7 @@ import csv
 
 class DataExtraction:
     """
-    A class for validanting data and extracting it from .csv files.
+    A class for validanting data and extracting it from CSV files.
     """
 
     def __init__(self):
@@ -34,7 +34,7 @@ class DataExtraction:
 
     def extract_data_from_csv(self, file_path, csv_column):
         """
-        Extracts the data from a given .csv 
+        Extracts the data from a given CSV
 
         Args:
             file_path (str): The path to the CSV file to be processed.
