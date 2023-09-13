@@ -40,9 +40,9 @@ def create_tables(db_connection):
         """, 
         """
         CREATE TABLE IF NOT EXISTS interactions (
-            interaction_id INT AUTO_INCREMENT PRIMARY KEY,
             user_id INT,
             recipe_id INT,
+            interaction_id INT GENERATED ALWAYS AS (user_id + recipe_id) STORED PRIMARY KEY,
             date DATETIME, 
             rating INT, 
             review TEXT,
