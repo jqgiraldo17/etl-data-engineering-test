@@ -10,7 +10,7 @@ DATA_FOLDER = "data/"
 def main():
 
     db_connection = get_db_connection("localhost", "testuser", "test1", "test")
-    batch_size = 10000
+    batch_size = 20000
 
     if db_connection:
         try:
@@ -22,9 +22,9 @@ def main():
             file_path_users = os.path.join(DATA_FOLDER, "RAW_users_sample.csv")
             file_path_interactions= os.path.join(DATA_FOLDER, "RAW_interactions_sample.csv")
 
-            data_recipe = extraction.extract_data_from_csv(file_path_recipe, 'id')
-            data_users = extraction.extract_data_from_csv(file_path_users, 'user id')
-            data_interactions = extraction.extract_data_from_csv(file_path_interactions, 'user_id')
+            data_recipe = extraction.extract_data_from_csv(file_path_recipe, 'id', batch_size)
+            data_users = extraction.extract_data_from_csv(file_path_users, 'user id', batch_size)
+            data_interactions = extraction.extract_data_from_csv(file_path_interactions, 'user_id', batch_size)
 
             columns_in_table_recipe = ['recipe_id', 'minutes', 'name', 'contributor_id', 'submitted_date', 'tags', 'nutrition', 'n_steps', 'steps', 'description', 'ingredients', 'n_ingredients']
             columns_recipe = ['id', 'minutes', 'name', 'contributor_id', 'submitted', 'tags', 'nutrition', 'n_steps', 'steps', 'description', 'ingredients', 'n_ingredients']
