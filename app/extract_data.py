@@ -20,19 +20,20 @@ class DataExtraction:
             boolean: True if the primary keys exists in the .csv
         """
        
-        if primary_key_column not in row or row[primary_key_column] is None or row[primary_key_column] == "":
+        if primary_key_column not in row:
             return False
 
-        try:
-            primary_key = int(row[primary_key_column])
-            if primary_key <= 0:
-                return False
-        except ValueError:
+        primary_key = row.get(primary_key_column)
+        if primary_key is None or primary_key == "" or not primary_key.isdigit():
+            return False
+
+        primary_key_int = int(primary_key)
+        if primary_key_int <= 0:
             return False
 
         return True
 
-    def extract_data_from_csv(self, file_path, csv_column):
+    def extract_data_from_csv(self, file_path, csv_column, batch_size):
         """
         Extracts the data from a given CSV
 
@@ -43,10 +44,23 @@ class DataExtraction:
         Returns:
             data (list): A list with the data processed.
         """
-        data = []
+        # data = []
+        # with open(file_path, 'r') as csvfile:
+        #     csv_reader = csv.DictReader(csvfile)
+        #     for row in csv_reader:
+        #         if self.validate_data(row, csv_column):
+        #             data.append(row)
+        # return data  
+        all_data = []
         with open(file_path, 'r') as csvfile:
             csv_reader = csv.DictReader(csvfile)
+            batch_data = []
             for row in csv_reader:
                 if self.validate_data(row, csv_column):
-                    data.append(row)
-        return data                                                                            
+                    batch_data.append(row)
+                    if len(batch_data) >= batch_size:
+                        all_data.extend(batch_data)
+                        batch_data = []
+            if batch_data:  # Store any remaining data in the last batch
+                all_data.extend(batch_data)
+        return all_data                                                                         
