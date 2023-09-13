@@ -40,17 +40,11 @@ class DataExtraction:
         Args:
             file_path (str): The path to the CSV file to be processed.
             csv_column (str): The name to the CSV column to extract data from.
+            batch_size (int): The batch size for the data extraction.
 
         Returns:
-            data (list): A list with the data processed.
+            all_data (list): A list with the data processed.
         """
-        # data = []
-        # with open(file_path, 'r') as csvfile:
-        #     csv_reader = csv.DictReader(csvfile)
-        #     for row in csv_reader:
-        #         if self.validate_data(row, csv_column):
-        #             data.append(row)
-        # return data  
         all_data = []
         with open(file_path, 'r') as csvfile:
             csv_reader = csv.DictReader(csvfile)
@@ -61,6 +55,6 @@ class DataExtraction:
                     if len(batch_data) >= batch_size:
                         all_data.extend(batch_data)
                         batch_data = []
-            if batch_data:  # Store any remaining data in the last batch
+            if batch_data:
                 all_data.extend(batch_data)
         return all_data                                                                         
